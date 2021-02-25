@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="36e6173b7e17461689fdb8a8c50dd6f7" Name="Diagram1">
+        <EntityTypeShape EntityType="FundWorkModel.Child" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.City" Width="1.5" PointX="1.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.Clinic" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.Diagnosis" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.Donation" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.EventType" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.Fund" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.FundBudget" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.MyDate" Width="1.5" PointX="3.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.MyEvent" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.MyLocation" Width="1.5" PointX="3.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.MyPriority" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.MyStatus" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.Position" Width="1.5" PointX="3.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FundWorkModel.Worker" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <AssociationConnector Association="FundWorkModel.cclinic_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.cdatebirth_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.cdateregistration_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.cdiagnosis_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.cfund_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.cpriority_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.cstatus_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.ccity_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.lcity_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.ddate_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.dfund_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.eeventtype_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.efund_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.ffund_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.wfund_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.edate_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.elocation_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.estatus_id" ManuallyRouted="false" />
+        <AssociationConnector Association="FundWorkModel.wposition_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

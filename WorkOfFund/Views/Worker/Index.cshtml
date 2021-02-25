@@ -1,0 +1,279 @@
+﻿@model IEnumerable<WorkOfFund.Models.WorkerViewModel>
+@{
+    ViewBag.Title = "Workers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<style type="text/css">
+    .worker-name, .workerdetails-name {
+        color: #19371C;
+        font-size: 36px;
+        font-weight: bold;
+        margin-left: 20px;
+        width: 100px;
+    }
+
+    .worker-line, .workerdetails-line, .saveworker-line {
+        border: 1px solid #1DEC32;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        width: 340px;
+    }
+
+    .table-div {
+        font-size: 18px;
+    }
+
+    .worker-table {
+        border-collapse: collapse;
+        width: 90%;
+        margin-left: 10px;
+    }
+
+        .worker-table th, td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .worker-table tr:hover {
+            background-color: #1DEC32;
+        }
+
+        .worker-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    .worker-header {
+        display: inline-block;
+        width: 100px;
+    }
+
+    .button-div {
+        display: inline-block;
+        float: right;
+        margin-right: 200px;
+        margin-top: 20px;
+    }
+
+    .addworker-btn {
+        background-color: #1DEC32;
+        color: white;
+        font-size: 18px;
+        border-radius: 5px;
+        text-decoration-line: none;
+        padding: 8px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .worker-table {
+        width: 85%;
+    }
+
+    #delete-icon, .edit-btn, .delete-btn {
+        color: #4CAF50;
+        background-color: white;
+    }
+
+    .n-span, .s-span, .l-span {
+        display: none;
+        color: #19371C;
+        font-size: 18px;
+    }
+
+    .n-input, .s-input, .l-input {
+        display: none;
+        color: #19371C;
+        font-size: 18px;
+        font-family: Roboto;
+    }
+
+    .update-btn, .cancel-btn {
+        text-decoration-line: none;
+        color: #4CAF50;
+        display: none;
+        font-size: 18px;
+    }
+</style>
+
+<div class="worker-div">
+    <div class="worker-header">
+        <p class="worker-name">Працівники</p>
+        <hr class="worker-line">
+    </div>
+    <div class="button-div">
+        @Html.ActionLink("Додати", "AddWorker", "Worker", new { @class = "addworker-btn" })
+        <!--<input type="button" class="addworker-btn" value="Додати">-->
+    </div>
+    <div class="table-div">
+        <table class="worker-table">
+            <tr>
+                <th>Ім'я</th>
+                <th>Прізвище</th>
+                <th>Логін</th>
+                <th>Посада</th>
+                <th></th>
+            </tr>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="display: none;" class="index-head"><span>@item.worker_id</span></td>
+                        <td class="name-head">
+                            <span class="n-span">@item.worker_name</span>@Html.ActionLink(item.worker_name, "WorkerDetails", new { worker_id = item.worker_id }, new { @class = "n-link", @style = "text-decoration-line: none; color: #19371C;" })
+                            <input type="text" class="n-input" value="@item.worker_name" />
+                        </td>
+                        <td class="surname-head">
+                            <span class="s-span">@item.worker_surname</span>@Html.ActionLink(item.worker_surname, "WorkerDetails", new { worker_id = item.worker_id }, new { @class = "s-link", @style = "text-decoration-line: none; color: #19371C;" })
+                            <input type="text" class="s-input" value="@item.worker_surname" />
+                        </td>
+                        <td class="login-head">
+                            <span class="l-span">@item.worker_login</span>@Html.ActionLink(item.worker_login, "WorkerDetails", new { worker_id = item.worker_id }, new { @class = "l-link", @style = "text-decoration-line: none; color: #19371C;" })
+                            <input type="text" class="l-input" value="@item.worker_login" />
+                        </td>
+                        <td>@Html.ActionLink(item.position_name, "WorkerDetails", new { worker_id = item.worker_id }, new { @style = "text-decoration-line: none; color: #19371C;" })</td>
+                        <td id="edit-icon">
+                            <a class="edit-btn" href="javascript:;"><i class='far fa-edit'></i></a>
+                            <a class="update-btn" href="javascript:;">Зберегти</a>
+                            <a class="cancel-btn" href="javascript:;">Скасувати</a>
+                            @if (item.wposition_id == 2)
+                            {
+                                <a class="delete-btn" href="javascript:;"><i class='far fa-trash-alt'></i></a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(".worker-div").on("click", ".worker-table .edit-btn", function () {
+        var row = $(this).closest("tr");
+        $("td", row).each(function () {
+            if ($(this).find("input").length > 0) {
+                $(this).find("input").show();
+                $(this).find(".n-link").hide();
+                $(this).find(".s-link").hide();
+                $(this).find(".l-link").hide();
+            }
+        });
+        row.find(".update-btn").show();
+        row.find(".cancel-btn").show();
+        row.find(".delete-btn").hide();
+        $(this).hide();
+    });
+    $(".worker-div").on("click", ".worker-table .update-btn", function () {
+        var row = $(this).closest("tr");
+        $("td", row).each(function () {
+            if ($(this).find("input").length > 0) {
+                var span = $(this).find("span");
+                var input = $(this).find("input");
+                span.html(input.val());
+                $(this).find(".n-link").show();
+                $(this).find(".s-link").show();
+                $(this).find(".l-link").show();
+                input.hide();
+            }
+        });
+        row.find(".edit-btn").show();
+        row.find(".delete-btn").show();
+        row.find(".cancel-btn").hide();
+        $(this).hide();
+
+        var worker = {};
+        worker.worker_id = row.find(".index-head").find("span").html();
+        worker.worker_name = row.find(".name-head").find("span").html();
+        worker.worker_surname = row.find(".surname-head").find("span").html();
+        worker.worker_login = row.find(".login-head").find("span").html();
+        $.ajax({
+            type: "POST",
+            url: "/Worker/UpdateWorker",
+            data: '{worker:' + JSON.stringify(worker) + '}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        });
+    });
+    $(".worker-div").on("click", ".worker-table .cancel-btn", function () {
+        var row = $(this).closest("tr");
+        $("td", row).each(function () {
+            if ($(this).find("input").length > 0) {
+                var span = $(this).find("span");
+                var input = $(this).find("input");
+                input.val(span.html());
+                $(this).find(".n-link").show();
+                $(this).find(".s-link").show();
+                $(this).find(".l-link").show();
+                input.hide();
+            }
+        });
+        row.find(".edit-btn").show();
+        row.find(".delete-btn").show();
+        row.find(".update-btn").hide();
+        $(this).hide();
+    });
+    $(".worker-div").on("click", ".worker-table .delete-btn", function () {
+        if (confirm("Ви дійсно хочете видалити користувача?")) {
+            var row = $(this).closest("tr");
+            var worker_id = row.find("span").html();
+            $.ajax({
+                type: "POST",
+                url: "/Worker/DeleteWorker",
+                data: '{worker_id: ' + worker_id + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if ($(".worker-table tr").length > 2) {
+                        row.remove();
+                    } else {
+                        row.find(".edit-btn").hide();
+                        row.find(".delete-btn").hide();
+                        row.find("span").html('&nbsp;');
+                    }
+                }
+            });
+        }
+    });
+    /*$(".worker-div").on("click", ".worker-table .delete-btn", function () {
+        swal({
+            text: "Ви дійсно хочете видалити користувача?",
+            showCancelButton: true,
+            cancelButtonColor: "#D3D3D3",
+            confirmButtonColor: "#0C8524",
+            confirmButtonText: "Confirm",
+            cancelButtonText: "Cancel",
+            closeOnConfirm: true,
+            closeOnCancel: true
+        }, function (isConfirm) {
+                if (isConfirm) {
+                    var row = $(this).closest("tr");
+                    var worker_id = row.find("span").html();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Worker/DeleteWorker",
+                        data: '{worker_id: ' + worker_id + '}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if ($(".worker-table tr").length > 2) {
+                                row.remove();
+                            } else {
+                                row.find(".edit-btn").hide();
+                                row.find(".delete-btn").hide();
+                                row.find("span").html('&nbsp;');
+                            }
+                        }
+                    });
+                }
+        });
+    });*/
+</script>

@@ -1,0 +1,101 @@
+﻿@model WorkOfFund.Models.WorkerViewModel
+@{
+    ViewBag.Title = "SaveWorker";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link type="text/css" rel="stylesheet" href="~/Content/Site.css" />
+<script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<style type="text/css">
+    .saveworker-line {
+        border: 1px solid #1DEC32;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        width: 340px;
+    }
+
+    .saveworker-name {
+        color: #19371C;
+        font-size: 36px;
+        font-weight: bold;
+        margin-left: 20px;
+        width: 500px;
+    }
+
+    .field-div {
+        margin-left: 20px;
+        font-size: 30px;
+    }
+
+    .textbox_name, .textbox_surname, .textbox_login, .textbox_password {
+        border: 1px solid #E5E5E5;
+        height: 40px;
+        width: 340px;
+        margin-top: 15px;
+        border-radius: 5px;
+    }
+
+    #addwr-btn {
+        background-color: #1DEC32;
+        color: white;
+        height: 35px;
+        width: 135px;
+        font-size: 18px;
+        border-radius: 5px;
+        text-decoration-line: none;
+        padding-top: 5px;
+        padding-left: 15px;
+        margin-top: 13px;
+        margin-left: 204px;
+    }
+
+    .error {
+        color: red;
+    }
+</style>
+
+<div>
+    <p class="saveworker-name">Додати менеджера</p>
+    <hr class="saveworker-line">
+    <div class="field-div">
+        <form id="my-form">
+            @Html.TextBoxFor(model => model.worker_name, new { @class = "textbox_name", @placeholder = "Ім'я" })<br>
+            @Html.ValidationMessageFor(model => model.worker_name, "", new { @class = "error" })
+            @Html.TextBoxFor(model => model.worker_surname, new { @class = "textbox_surname", @placeholder = "Прізвище" })<br>
+            @Html.ValidationMessageFor(model => model.worker_surname, "", new { @class = "error" })
+            @Html.TextBoxFor(model => model.worker_login, new { @class = "textbox_login", @placeholder = "Логін" })<br>
+            @Html.ValidationMessageFor(model => model.worker_login, "", new { @class = "error" })
+            @Html.PasswordFor(model => model.worker_password, new { @class = "textbox_password", @placeholder = "Пароль" })<br>
+            @Html.ValidationMessageFor(model => model.worker_password, "", new { @class = "error" })
+
+        </form>
+        <input type="button" value="Додати" id="addwr-btn">
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#addwr-btn").click(function () {
+            var data = $("#my-form").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/Worker/AddWorker",
+                data: data,
+                success: function (responce) {
+                    swal({
+                        title: "Успіх!",
+                        text: "Користувача успішно додано!",
+                        confirmButtonColor: "#1DEC32",
+                        confirmButtonText: "OK!",
+                    }).then(function () {
+                        window.location = "/Worker/Index";
+                    });
+                }
+            })
+        })
+    })
+</script>

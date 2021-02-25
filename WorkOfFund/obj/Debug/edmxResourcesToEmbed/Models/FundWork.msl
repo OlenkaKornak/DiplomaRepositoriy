@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FundWorkModelStoreContainer" CdmEntityContainer="FundWorkEntities">
+    <EntitySetMapping Name="Child">
+      <EntityTypeMapping TypeName="FundWorkModel.Child">
+        <MappingFragment StoreEntitySet="Child">
+          <ScalarProperty Name="child_id" ColumnName="child_id" />
+          <ScalarProperty Name="child_name" ColumnName="child_name" />
+          <ScalarProperty Name="child_surname" ColumnName="child_surname" />
+          <ScalarProperty Name="child_baccount" ColumnName="child_baccount" />
+          <ScalarProperty Name="child_budget" ColumnName="child_budget" />
+          <ScalarProperty Name="child_phone" ColumnName="child_phone" />
+          <ScalarProperty Name="child_description" ColumnName="child_description" />
+          <ScalarProperty Name="child_price" ColumnName="child_price" />
+          <ScalarProperty Name="cfund_id" ColumnName="cfund_id" />
+          <ScalarProperty Name="cclinic_id" ColumnName="cclinic_id" />
+          <ScalarProperty Name="cdiagnosis_id" ColumnName="cdiagnosis_id" />
+          <ScalarProperty Name="cpriority_id" ColumnName="cpriority_id" />
+          <ScalarProperty Name="cstatus_id" ColumnName="cstatus_id" />
+          <ScalarProperty Name="cdatebirth_id" ColumnName="cdatebirth_id" />
+          <ScalarProperty Name="cdatedeadline_id" ColumnName="cdatedeadline_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="FundWorkModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clinic">
+      <EntityTypeMapping TypeName="FundWorkModel.Clinic">
+        <MappingFragment StoreEntitySet="Clinic">
+          <ScalarProperty Name="clinic_id" ColumnName="clinic_id" />
+          <ScalarProperty Name="clinic_name" ColumnName="clinic_name" />
+          <ScalarProperty Name="clinic_baccount" ColumnName="clinic_baccount" />
+          <ScalarProperty Name="ccity_id" ColumnName="ccity_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diagnosis">
+      <EntityTypeMapping TypeName="FundWorkModel.Diagnosis">
+        <MappingFragment StoreEntitySet="Diagnosis">
+          <ScalarProperty Name="diagnosis_id" ColumnName="diagnosis_id" />
+          <ScalarProperty Name="diagnosis_name" ColumnName="diagnosis_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donation">
+      <EntityTypeMapping TypeName="FundWorkModel.Donation">
+        <MappingFragment StoreEntitySet="Donation">
+          <ScalarProperty Name="donation_id" ColumnName="donation_id" />
+          <ScalarProperty Name="donation_name" ColumnName="donation_name" />
+          <ScalarProperty Name="donation_surname" ColumnName="donation_surname" />
+          <ScalarProperty Name="donation_sum" ColumnName="donation_sum" />
+          <ScalarProperty Name="date_id" ColumnName="date_id" />
+          <ScalarProperty Name="dfund_id" ColumnName="dfund_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventType">
+      <EntityTypeMapping TypeName="FundWorkModel.EventType">
+        <MappingFragment StoreEntitySet="EventType">
+          <ScalarProperty Name="eventtype_id" ColumnName="eventtype_id" />
+          <ScalarProperty Name="eventtype_name" ColumnName="eventtype_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fund">
+      <EntityTypeMapping TypeName="FundWorkModel.Fund">
+        <MappingFragment StoreEntitySet="Fund">
+          <ScalarProperty Name="fund_id" ColumnName="fund_id" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundBudget">
+      <EntityTypeMapping TypeName="FundWorkModel.FundBudget">
+        <MappingFragment StoreEntitySet="FundBudget">
+          <ScalarProperty Name="fundbudget_id" ColumnName="fundbudget_id" />
+          <ScalarProperty Name="fondbudget_sum" ColumnName="fondbudget_sum" />
+          <ScalarProperty Name="fundbudget_baccount" ColumnName="fundbudget_baccount" />
+          <ScalarProperty Name="ffund_id" ColumnName="ffund_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyDate">
+      <EntityTypeMapping TypeName="FundWorkModel.MyDate">
+        <MappingFragment StoreEntitySet="MyDate">
+          <ScalarProperty Name="date_id" ColumnName="date_id" />
+          <ScalarProperty Name="mydate1" ColumnName="mydate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyEvent">
+      <EntityTypeMapping TypeName="FundWorkModel.MyEvent">
+        <MappingFragment StoreEntitySet="MyEvent">
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="event_description" ColumnName="event_description" />
+          <ScalarProperty Name="event_sum" ColumnName="event_sum" />
+          <ScalarProperty Name="elocation_id" ColumnName="elocation_id" />
+          <ScalarProperty Name="eeventtype_id" ColumnName="eeventtype_id" />
+          <ScalarProperty Name="edate_id" ColumnName="edate_id" />
+          <ScalarProperty Name="efund_id" ColumnName="efund_id" />
+          <ScalarProperty Name="estatus_id" ColumnName="estatus_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyLocation">
+      <EntityTypeMapping TypeName="FundWorkModel.MyLocation">
+        <MappingFragment StoreEntitySet="MyLocation">
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="location_name" ColumnName="location_name" />
+          <ScalarProperty Name="lcity_id" ColumnName="lcity_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyPriority">
+      <EntityTypeMapping TypeName="FundWorkModel.MyPriority">
+        <MappingFragment StoreEntitySet="MyPriority">
+          <ScalarProperty Name="priority_id" ColumnName="priority_id" />
+          <ScalarProperty Name="priority_degree" ColumnName="priority_degree" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyStatus">
+      <EntityTypeMapping TypeName="FundWorkModel.MyStatus">
+        <MappingFragment StoreEntitySet="MyStatus">
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Position">
+      <EntityTypeMapping TypeName="FundWorkModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="position_id" ColumnName="position_id" />
+          <ScalarProperty Name="position_name" ColumnName="position_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Worker">
+      <EntityTypeMapping TypeName="FundWorkModel.Worker">
+        <MappingFragment StoreEntitySet="Worker">
+          <ScalarProperty Name="worker_id" ColumnName="worker_id" />
+          <ScalarProperty Name="worker_name" ColumnName="worker_name" />
+          <ScalarProperty Name="worker_surname" ColumnName="worker_surname" />
+          <ScalarProperty Name="worker_login" ColumnName="worker_login" />
+          <ScalarProperty Name="worker_password" ColumnName="worker_password" />
+          <ScalarProperty Name="wfund_id" ColumnName="wfund_id" />
+          <ScalarProperty Name="wposition_id" ColumnName="wposition_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

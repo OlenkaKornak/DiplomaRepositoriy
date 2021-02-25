@@ -1,0 +1,147 @@
+﻿@model WorkOfFund.Models.BudgetViewModel
+@{
+    ViewBag.Title = "Fund Budget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #avaliable-div {
+        display: inline-block;
+        border-right: 1px solid #1DEC32;
+        width: 500px;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    #update-div {
+        display: inline-block;
+        margin-left: 100px;
+        width: 500px;
+        text-align: center;
+        padding-top: 50px;
+        height: 270px;
+    }
+
+    #edit-btn, #add-btn {
+        background-color: #1DEC32;
+        color: white;
+        font-size: 18px;
+        border-radius: 5px;
+        text-decoration-line: none;
+        width: 120px;
+        height: 40px;
+        margin-top: 55px;
+    }
+
+    #available-head, #update-head {
+        color: #19371C;
+        font-size: 24px;
+    }
+
+    #sum-div {
+        color: #19371C;
+        font-size: 20px;
+        margin-top: 40px;
+        border-bottom: 1px solid #1DEC32;
+        width: 180px;
+        margin-left: 165px;
+    }
+
+    #event-select {
+        color: #19371C;
+        font-size: 20px;
+        margin-top: 40px;
+        border: 1px solid #1DEC32;
+        border-radius: 5px;
+        width: 220px;
+    }
+
+    #enter-text {
+        color: #19371C;
+        font-size: 16px;
+        margin-top: 40px;
+        border-bottom: 1px solid #1DEC32;
+        width: 220px;
+    }
+
+    #inform-div {
+        border-top: 1px solid #1DEC32;
+        width: 1150px;
+        margin-top: 30px;
+        margin-left: 15px;
+    }
+
+    #inform-head {
+        color: #19371C;
+        font-size: 20px;
+        padding-top: 15px;
+    }
+
+    #inform-body, #daccount-div {
+        color: #19371C;
+        font-size: 16px;
+        padding-top: 15px;
+    }
+
+    #location-div {
+        float: right;
+        width: 300px;
+        margin-top: 15px;
+    }
+
+    #address, #email {
+        color: #19371C;
+        margin-top: 8px;
+        font-size: 16px;
+    }
+
+</style>
+
+<div>
+    <div id="avaliable-div">
+        <p id="available-head">Доступні кошти</p>
+        <div id="sum-div">
+            <span id="dollar-sighn">&#36;</span>
+            @Model.fondbudget_sum
+        </div>
+        <input type="button" id="edit-btn" value="Редагувати" onclick="EditSum(@Model.fundbudget_id)">
+    </div>
+    <div id="update-div">
+        <p id="update-head">Оновити бюджет</p>
+        <select id="event-select">Event</select>
+        <br>
+        <input type="text" id="enter-text" placeholder="Введіть назбирану суму, $">
+        <br>
+        <input type="button" id="add-btn" value="Додати">
+    </div>
+    <div id="inform-div">
+        <p id="inform-head">Реквізити фонду</p>
+        <p id="inform-body">АТ КБ ПриватБанку м.Львів</p>
+        <div id="daccount-div">
+            @Model.fundbudget_baccount
+        </div>
+        <div id="location-div">
+            <p id="address">м.Львів, вул.Княгині Ольоги, 8</p>
+            <p id="email">charityfunds@gmail.com</p>
+        </div>
+    </div>
+</div>
+<div id="open-popup" class="my-modal" style="display:none"></div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+<script type="text/javascript">
+    function EditSum(bid) {
+        var x = $("#open-popup");
+        x.load('/Budget/Edit?fundbudget_id=' + bid, function () {
+            x.dialog({
+                modal: true,
+                width: 450,
+                height: 250,
+                resizable: false
+            });
+        });
+    }
+</script>
+

@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FundWorkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Child">
+    <Key>
+      <PropertyRef Name="child_id" />
+    </Key>
+    <Property Name="child_id" Type="Int32" Nullable="false" />
+    <Property Name="child_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="child_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="child_baccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="child_budget" Type="Int32" />
+    <Property Name="child_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="child_description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="child_price" Type="Int32" />
+    <Property Name="cfund_id" Type="Int32" Nullable="false" />
+    <Property Name="cclinic_id" Type="Int32" />
+    <Property Name="cdiagnosis_id" Type="Int32" Nullable="false" />
+    <Property Name="cpriority_id" Type="Int32" Nullable="false" />
+    <Property Name="cstatus_id" Type="Int32" Nullable="false" />
+    <Property Name="cdatebirth_id" Type="Int32" Nullable="false" />
+    <Property Name="cdatedeadline_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Clinic" Relationship="Self.cclinic_id" FromRole="Child" ToRole="Clinic" />
+    <NavigationProperty Name="MyDate" Relationship="Self.cdatebirth_id" FromRole="Child" ToRole="MyDate" />
+    <NavigationProperty Name="MyDate1" Relationship="Self.cdateregistration_id" FromRole="Child" ToRole="MyDate" />
+    <NavigationProperty Name="Diagnosis" Relationship="Self.cdiagnosis_id" FromRole="Child" ToRole="Diagnosis" />
+    <NavigationProperty Name="Fund" Relationship="Self.cfund_id" FromRole="Child" ToRole="Fund" />
+    <NavigationProperty Name="MyPriority" Relationship="Self.cpriority_id" FromRole="Child" ToRole="MyPriority" />
+    <NavigationProperty Name="MyStatus" Relationship="Self.cstatus_id" FromRole="Child" ToRole="MyStatus" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="Int32" Nullable="false" />
+    <Property Name="city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clinic" Relationship="Self.ccity_id" FromRole="City" ToRole="Clinic" />
+    <NavigationProperty Name="MyLocation" Relationship="Self.lcity_id" FromRole="City" ToRole="MyLocation" />
+  </EntityType>
+  <EntityType Name="Clinic">
+    <Key>
+      <PropertyRef Name="clinic_id" />
+    </Key>
+    <Property Name="clinic_id" Type="Int32" Nullable="false" />
+    <Property Name="clinic_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="clinic_baccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ccity_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Child" Relationship="Self.cclinic_id" FromRole="Clinic" ToRole="Child" />
+    <NavigationProperty Name="City" Relationship="Self.ccity_id" FromRole="Clinic" ToRole="City" />
+  </EntityType>
+  <EntityType Name="Diagnosis">
+    <Key>
+      <PropertyRef Name="diagnosis_id" />
+    </Key>
+    <Property Name="diagnosis_id" Type="Int32" Nullable="false" />
+    <Property Name="diagnosis_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Child" Relationship="Self.cdiagnosis_id" FromRole="Diagnosis" ToRole="Child" />
+  </EntityType>
+  <EntityType Name="Donation">
+    <Key>
+      <PropertyRef Name="donation_id" />
+    </Key>
+    <Property Name="donation_id" Type="Int32" Nullable="false" />
+    <Property Name="donation_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="donation_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="donation_sum" Type="Int32" />
+    <Property Name="date_id" Type="Int32" Nullable="false" />
+    <Property Name="dfund_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MyDate" Relationship="Self.ddate_id" FromRole="Donation" ToRole="MyDate" />
+    <NavigationProperty Name="Fund" Relationship="Self.dfund_id" FromRole="Donation" ToRole="Fund" />
+  </EntityType>
+  <EntityType Name="EventType">
+    <Key>
+      <PropertyRef Name="eventtype_id" />
+    </Key>
+    <Property Name="eventtype_id" Type="Int32" Nullable="false" />
+    <Property Name="eventtype_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MyEvent" Relationship="Self.eeventtype_id" FromRole="EventType" ToRole="MyEvent" />
+  </EntityType>
+  <EntityType Name="Fund">
+    <Key>
+      <PropertyRef Name="fund_id" />
+    </Key>
+    <Property Name="fund_id" Type="Int32" Nullable="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Child" Relationship="Self.cfund_id" FromRole="Fund" ToRole="Child" />
+    <NavigationProperty Name="Donation" Relationship="Self.dfund_id" FromRole="Fund" ToRole="Donation" />
+    <NavigationProperty Name="MyEvent" Relationship="Self.efund_id" FromRole="Fund" ToRole="MyEvent" />
+    <NavigationProperty Name="FundBudget" Relationship="Self.ffund_id" FromRole="Fund" ToRole="FundBudget" />
+    <NavigationProperty Name="Worker" Relationship="Self.wfund_id" FromRole="Fund" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="FundBudget">
+    <Key>
+      <PropertyRef Name="fundbudget_id" />
+    </Key>
+    <Property Name="fundbudget_id" Type="Int32" Nullable="false" />
+    <Property Name="fondbudget_sum" Type="Int32" />
+    <Property Name="fundbudget_baccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ffund_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Fund" Relationship="Self.ffund_id" FromRole="FundBudget" ToRole="Fund" />
+  </EntityType>
+  <EntityType Name="MyDate">
+    <Key>
+      <PropertyRef Name="date_id" />
+    </Key>
+    <Property Name="date_id" Type="Int32" Nullable="false" />
+    <Property Name="mydate1" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Child" Relationship="Self.cdatebirth_id" FromRole="MyDate" ToRole="Child" />
+    <NavigationProperty Name="Child1" Relationship="Self.cdateregistration_id" FromRole="MyDate" ToRole="Child" />
+    <NavigationProperty Name="Donation" Relationship="Self.ddate_id" FromRole="MyDate" ToRole="Donation" />
+    <NavigationProperty Name="MyEvent" Relationship="Self.edate_id" FromRole="MyDate" ToRole="MyEvent" />
+  </EntityType>
+  <EntityType Name="MyEvent">
+    <Key>
+      <PropertyRef Name="event_id" />
+    </Key>
+    <Property Name="event_id" Type="Int32" Nullable="false" />
+    <Property Name="event_description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="event_sum" Type="Int32" />
+    <Property Name="elocation_id" Type="Int32" Nullable="false" />
+    <Property Name="eeventtype_id" Type="Int32" Nullable="false" />
+    <Property Name="edate_id" Type="Int32" Nullable="false" />
+    <Property Name="efund_id" Type="Int32" Nullable="false" />
+    <Property Name="estatus_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EventType" Relationship="Self.eeventtype_id" FromRole="MyEvent" ToRole="EventType" />
+    <NavigationProperty Name="Fund" Relationship="Self.efund_id" FromRole="MyEvent" ToRole="Fund" />
+    <NavigationProperty Name="MyDate" Relationship="Self.edate_id" FromRole="MyEvent" ToRole="MyDate" />
+    <NavigationProperty Name="MyLocation" Relationship="Self.elocation_id" FromRole="MyEvent" ToRole="MyLocation" />
+    <NavigationProperty Name="MyStatus" Relationship="Self.estatus_id" FromRole="MyEvent" ToRole="MyStatus" />
+  </EntityType>
+  <EntityType Name="MyLocation">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="Int32" Nullable="false" />
+    <Property Name="location_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="lcity_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.lcity_id" FromRole="MyLocation" ToRole="City" />
+    <NavigationProperty Name="MyEvent" Relationship="Self.elocation_id" FromRole="MyLocation" ToRole="MyEvent" />
+  </EntityType>
+  <EntityType Name="MyPriority">
+    <Key>
+      <PropertyRef Name="priority_id" />
+    </Key>
+    <Property Name="priority_id" Type="Int32" Nullable="false" />
+    <Property Name="priority_degree" Type="Int32" />
+    <NavigationProperty Name="Child" Relationship="Self.cpriority_id" FromRole="MyPriority" ToRole="Child" />
+  </EntityType>
+  <EntityType Name="MyStatus">
+    <Key>
+      <PropertyRef Name="status_id" />
+    </Key>
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="status_name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Child" Relationship="Self.cstatus_id" FromRole="MyStatus" ToRole="Child" />
+    <NavigationProperty Name="MyEvent" Relationship="Self.estatus_id" FromRole="MyStatus" ToRole="MyEvent" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="position_id" />
+    </Key>
+    <Property Name="position_id" Type="Int32" Nullable="false" />
+    <Property Name="position_name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Worker" Relationship="Self.wposition_id" FromRole="Position" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="worker_id" />
+    </Key>
+    <Property Name="worker_id" Type="Int32" Nullable="false" />
+    <Property Name="worker_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="worker_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="worker_login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="worker_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="wfund_id" Type="Int32" Nullable="false" />
+    <Property Name="wposition_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Fund" Relationship="Self.wfund_id" FromRole="Worker" ToRole="Fund" />
+    <NavigationProperty Name="Position" Relationship="Self.wposition_id" FromRole="Worker" ToRole="Position" />
+  </EntityType>
+  <Association Name="cclinic_id">
+    <End Role="Clinic" Type="Self.Clinic" Multiplicity="0..1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clinic">
+        <PropertyRef Name="clinic_id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="cclinic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cdatebirth_id">
+    <End Role="MyDate" Type="Self.MyDate" Multiplicity="1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyDate">
+        <PropertyRef Name="date_id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="cdatebirth_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cdateregistration_id">
+    <End Role="MyDate" Type="Self.MyDate" Multiplicity="1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyDate">
+        <PropertyRef Name="date_id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="cdatedeadline_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cdiagnosis_id">
+    <End Role="Diagnosis" Type="Self.Diagnosis" Multiplicity="1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diagnosis">
+        <PropertyRef Name="diagnosis_id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="cdiagnosis_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cfund_id">
+    <End Role="Fund" Type="Self.Fund" Multiplicity="1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fund">
+        <PropertyRef Name="fund_id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="cfund_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cpriority_id">
+    <End Role="MyPriority" Type="Self.MyPriority" Multiplicity="1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyPriority">
+        <PropertyRef Name="priority_id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="cpriority_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cstatus_id">
+    <End Role="MyStatus" Type="Self.MyStatus" Multiplicity="1" />
+    <End Role="Child" Type="Self.Child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyStatus">
+        <PropertyRef Name="status_id" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="cstatus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ccity_id">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Clinic" Type="Self.Clinic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="city_id" />
+      </Principal>
+      <Dependent Role="Clinic">
+        <PropertyRef Name="ccity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lcity_id">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="MyLocation" Type="Self.MyLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="city_id" />
+      </Principal>
+      <Dependent Role="MyLocation">
+        <PropertyRef Name="lcity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ddate_id">
+    <End Role="MyDate" Type="Self.MyDate" Multiplicity="1" />
+    <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyDate">
+        <PropertyRef Name="date_id" />
+      </Principal>
+      <Dependent Role="Donation">
+        <PropertyRef Name="date_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="dfund_id">
+    <End Role="Fund" Type="Self.Fund" Multiplicity="1" />
+    <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fund">
+        <PropertyRef Name="fund_id" />
+      </Principal>
+      <Dependent Role="Donation">
+        <PropertyRef Name="dfund_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="eeventtype_id">
+    <End Role="EventType" Type="Self.EventType" Multiplicity="1" />
+    <End Role="MyEvent" Type="Self.MyEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventType">
+        <PropertyRef Name="eventtype_id" />
+      </Principal>
+      <Dependent Role="MyEvent">
+        <PropertyRef Name="eeventtype_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="efund_id">
+    <End Role="Fund" Type="Self.Fund" Multiplicity="1" />
+    <End Role="MyEvent" Type="Self.MyEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fund">
+        <PropertyRef Name="fund_id" />
+      </Principal>
+      <Dependent Role="MyEvent">
+        <PropertyRef Name="efund_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ffund_id">
+    <End Role="Fund" Type="Self.Fund" Multiplicity="1" />
+    <End Role="FundBudget" Type="Self.FundBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fund">
+        <PropertyRef Name="fund_id" />
+      </Principal>
+      <Dependent Role="FundBudget">
+        <PropertyRef Name="ffund_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wfund_id">
+    <End Role="Fund" Type="Self.Fund" Multiplicity="1" />
+    <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fund">
+        <PropertyRef Name="fund_id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="wfund_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="edate_id">
+    <End Role="MyDate" Type="Self.MyDate" Multiplicity="1" />
+    <End Role="MyEvent" Type="Self.MyEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyDate">
+        <PropertyRef Name="date_id" />
+      </Principal>
+      <Dependent Role="MyEvent">
+        <PropertyRef Name="edate_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="elocation_id">
+    <End Role="MyLocation" Type="Self.MyLocation" Multiplicity="1" />
+    <End Role="MyEvent" Type="Self.MyEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyLocation">
+        <PropertyRef Name="location_id" />
+      </Principal>
+      <Dependent Role="MyEvent">
+        <PropertyRef Name="elocation_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="estatus_id">
+    <End Role="MyStatus" Type="Self.MyStatus" Multiplicity="1" />
+    <End Role="MyEvent" Type="Self.MyEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyStatus">
+        <PropertyRef Name="status_id" />
+      </Principal>
+      <Dependent Role="MyEvent">
+        <PropertyRef Name="estatus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wposition_id">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="position_id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="wposition_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FundWorkEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Child" EntityType="Self.Child" />
+    <EntitySet Name="City" EntityType="Self.City" />
+    <EntitySet Name="Clinic" EntityType="Self.Clinic" />
+    <EntitySet Name="Diagnosis" EntityType="Self.Diagnosis" />
+    <EntitySet Name="Donation" EntityType="Self.Donation" />
+    <EntitySet Name="EventType" EntityType="Self.EventType" />
+    <EntitySet Name="Fund" EntityType="Self.Fund" />
+    <EntitySet Name="FundBudget" EntityType="Self.FundBudget" />
+    <EntitySet Name="MyDate" EntityType="Self.MyDate" />
+    <EntitySet Name="MyEvent" EntityType="Self.MyEvent" />
+    <EntitySet Name="MyLocation" EntityType="Self.MyLocation" />
+    <EntitySet Name="MyPriority" EntityType="Self.MyPriority" />
+    <EntitySet Name="MyStatus" EntityType="Self.MyStatus" />
+    <EntitySet Name="Position" EntityType="Self.Position" />
+    <EntitySet Name="Worker" EntityType="Self.Worker" />
+    <AssociationSet Name="cclinic_id" Association="Self.cclinic_id">
+      <End Role="Clinic" EntitySet="Clinic" />
+      <End Role="Child" EntitySet="Child" />
+    </AssociationSet>
+    <AssociationSet Name="cdatebirth_id" Association="Self.cdatebirth_id">
+      <End Role="MyDate" EntitySet="MyDate" />
+      <End Role="Child" EntitySet="Child" />
+    </AssociationSet>
+    <AssociationSet Name="cdateregistration_id" Association="Self.cdateregistration_id">
+      <End Role="MyDate" EntitySet="MyDate" />
+      <End Role="Child" EntitySet="Child" />
+    </AssociationSet>
+    <AssociationSet Name="cdiagnosis_id" Association="Self.cdiagnosis_id">
+      <End Role="Diagnosis" EntitySet="Diagnosis" />
+      <End Role="Child" EntitySet="Child" />
+    </AssociationSet>
+    <AssociationSet Name="cfund_id" Association="Self.cfund_id">
+      <End Role="Fund" EntitySet="Fund" />
+      <End Role="Child" EntitySet="Child" />
+    </AssociationSet>
+    <AssociationSet Name="cpriority_id" Association="Self.cpriority_id">
+      <End Role="MyPriority" EntitySet="MyPriority" />
+      <End Role="Child" EntitySet="Child" />
+    </AssociationSet>
+    <AssociationSet Name="cstatus_id" Association="Self.cstatus_id">
+      <End Role="MyStatus" EntitySet="MyStatus" />
+      <End Role="Child" EntitySet="Child" />
+    </AssociationSet>
+    <AssociationSet Name="ccity_id" Association="Self.ccity_id">
+      <End Role="City" EntitySet="City" />
+      <End Role="Clinic" EntitySet="Clinic" />
+    </AssociationSet>
+    <AssociationSet Name="lcity_id" Association="Self.lcity_id">
+      <End Role="City" EntitySet="City" />
+      <End Role="MyLocation" EntitySet="MyLocation" />
+    </AssociationSet>
+    <AssociationSet Name="ddate_id" Association="Self.ddate_id">
+      <End Role="MyDate" EntitySet="MyDate" />
+      <End Role="Donation" EntitySet="Donation" />
+    </AssociationSet>
+    <AssociationSet Name="dfund_id" Association="Self.dfund_id">
+      <End Role="Fund" EntitySet="Fund" />
+      <End Role="Donation" EntitySet="Donation" />
+    </AssociationSet>
+    <AssociationSet Name="eeventtype_id" Association="Self.eeventtype_id">
+      <End Role="EventType" EntitySet="EventType" />
+      <End Role="MyEvent" EntitySet="MyEvent" />
+    </AssociationSet>
+    <AssociationSet Name="efund_id" Association="Self.efund_id">
+      <End Role="Fund" EntitySet="Fund" />
+      <End Role="MyEvent" EntitySet="MyEvent" />
+    </AssociationSet>
+    <AssociationSet Name="ffund_id" Association="Self.ffund_id">
+      <End Role="Fund" EntitySet="Fund" />
+      <End Role="FundBudget" EntitySet="FundBudget" />
+    </AssociationSet>
+    <AssociationSet Name="wfund_id" Association="Self.wfund_id">
+      <End Role="Fund" EntitySet="Fund" />
+      <End Role="Worker" EntitySet="Worker" />
+    </AssociationSet>
+    <AssociationSet Name="edate_id" Association="Self.edate_id">
+      <End Role="MyDate" EntitySet="MyDate" />
+      <End Role="MyEvent" EntitySet="MyEvent" />
+    </AssociationSet>
+    <AssociationSet Name="elocation_id" Association="Self.elocation_id">
+      <End Role="MyLocation" EntitySet="MyLocation" />
+      <End Role="MyEvent" EntitySet="MyEvent" />
+    </AssociationSet>
+    <AssociationSet Name="estatus_id" Association="Self.estatus_id">
+      <End Role="MyStatus" EntitySet="MyStatus" />
+      <End Role="MyEvent" EntitySet="MyEvent" />
+    </AssociationSet>
+    <AssociationSet Name="wposition_id" Association="Self.wposition_id">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Worker" EntitySet="Worker" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

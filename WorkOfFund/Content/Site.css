@@ -1,0 +1,97 @@
+﻿* {
+    box-sizing: border-box;
+    border: 0px;
+    margin: 0px;
+}
+
+body {
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+}
+
+.all_body {
+    background-color: #F4FFF5;
+    height: 100%;
+}
+
+.up-menu {
+    background-color: #0C8524;
+    height: 67px;
+}
+
+.fund-name {
+    text-decoration-line: none;
+    font-size: 26px;
+    color: #D0FACF;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.user-name, .logout-ref {
+    color: #D0FACF;
+    font-size: 18px;
+    float: right;
+    font-family: 'Roboto';
+    margin-right: 10px;
+    margin-top: 18px;
+}
+
+.down-space {
+}
+
+.side-menu {
+    height: 100%;
+    width: 180px;
+    position: fixed;
+    z-index: 1;
+    top: 67px;
+    left: 0px;
+    background-color: #F4FFF5;
+    overflow-x: hidden;
+    padding-top: 20px;
+    display: inline-block;
+}
+
+.refs-div {
+    margin-left: 50px;
+}
+
+.ref {
+    font-size: 20px;
+    color: #19371C;
+}
+
+.side-line {
+    border: 1px solid #18BF36;
+    margin-top: 180px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    width: 140px;
+}
+
+.main-body {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 67px;
+    margin-left: 180px;
+    background-color: white;
+    overflow-x: hidden;
+    padding-top: 20px;
+    display: inline-block;
+}

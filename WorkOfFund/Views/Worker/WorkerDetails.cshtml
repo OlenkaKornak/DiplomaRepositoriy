@@ -1,0 +1,115 @@
+﻿@model WorkOfFund.Models.WorkerViewModel
+@{
+    ViewBag.Title = "WorkerDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<style type="text/css">
+    .workerdetails-name {
+        color: #19371C;
+        font-size: 36px;
+        font-weight: bold;
+        margin-left: 20px;
+        width: 600px;
+    }
+
+    .workerdetails-line, .saveworker-line {
+        border: 1px solid #1DEC32;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        width: 340px;
+    }
+
+    .w-name, .w-surname, .w-login, .w-password, .w-position {
+        font-size: 20px;
+        color: #19371C;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    #password-text {
+        font-size: 18px;
+        color: #19371C;
+    }
+    #show-lable {
+        font-size: 14px;
+        color: #19371C;
+    }
+    .name-line, .surname-line, .login-line, .password-line, .position-line {
+        border: 1px solid #E5E5E5;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        margin-left: 42px;
+        width: 600px;
+    }
+
+    .surname-line {
+        margin-left: 94px;
+        width: 548px;
+    }
+
+    .login-line {
+        margin-left: 57px;
+        width: 585px;
+    }
+
+    .password-line {
+        margin-left: 73px;
+        width: 569px;
+    }
+
+    .position-line {
+        margin-left: 73px;
+        width: 569px;
+    }
+</style>
+
+<div>
+    <p class="workerdetails-name">Деталі працівника</p>
+    <hr class="workerdetails-line">
+    <div class="workerdetails-div">
+        <div class="w-name">
+            <lable>Ім'я:</lable>
+            @Model.worker_name
+            <hr class="name-line">
+        </div>
+        <div class="w-surname">
+            <lable>Прізвище:</lable>
+            @Model.worker_surname
+            <hr class="surname-line">
+        </div>
+        <div class="w-login">
+            <lable>Логін:</lable>
+            @Model.worker_login
+            <hr class="login-line">
+        </div>
+        <div class="w-password">
+            <lable>Пароль:</lable>
+            <input type="password" id="password-text" value=@Model.worker_password>
+            <hr class="password-line">
+        </div>
+        <div class="w-password">
+            <input type="checkbox" id="password-show" onclick="ShowPassword()">
+            <lable id="show-lable">Показати пароль</lable>
+        </div>
+        <div class="w-position">
+            <lable>Посада:</lable>
+            @Model.position_name
+            <hr class="position-line">
+        </div>
+    </div>
+    <!--<input type="button" class="changepass-btn" value="Змінити пароль" onclick="AddEditWorker()">-->
+</div>
+<script>
+    function ShowPassword() {
+        var x = document.getElementById("password-text");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>

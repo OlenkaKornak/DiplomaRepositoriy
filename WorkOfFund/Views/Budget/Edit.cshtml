@@ -1,0 +1,57 @@
+﻿@model WorkOfFund.Models.BudgetViewModel
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+
+<style type="text/css">
+    #edit-header {
+        padding-left: 70px;
+        color: #19371C;
+        font-size: 24px;
+    }
+
+    .sum-text {
+        margin-top: 30px;
+        margin-left: 70px;
+        width: 240px;
+        border: none;
+        border-bottom: 1px solid #1DEC32;
+    }
+
+    #save-btn {
+        background-color: #1DEC32;
+        color: white;
+        font-size: 18px;
+        border-radius: 5px;
+        text-decoration-line: none;
+        width: 120px;
+        height: 40px;
+        margin-top: 30px;
+        margin-left: 140px;
+    }
+</style>
+
+<p id="edit-header">Редагувати бюджет</p>
+@Html.HiddenFor(model => model.fundbudget_id)
+@Html.TextBoxFor(model => model.fondbudget_sum, new { @class = "sum-text", @placeholder = "Введіть поточну суму, $" })
+<br>
+<input type="button" id="save-btn" value="Зберегти" onclick="updateSum()" />
+
+<script>
+    function updateSum() {
+        var bid = $("#fundbudget_id").val();
+        var bsum = $("#fondbudget_sum").val();
+        var updateDetails = { "fundbudget_id": bid, "fondbudget_sum": bsum }
+        $.post('/Budget/Edit', updateDetails, function (data) { if (data == 0) { location: location.href; } }, 'json');
+        swal({
+            title: "Успіх!",
+            text: "Суму бюджету успішно змінено!",
+            confirmButtonColor: "#1DEC32",
+            confirmButtonText: "OK!",
+        }).then(function () {
+            window.location.reload() = "/Budget/Index";
+        });
+    }
+</script>
